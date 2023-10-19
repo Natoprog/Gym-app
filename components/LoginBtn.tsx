@@ -9,7 +9,7 @@ export default async function LoginBtn() {
         e.preventDefault()
         signIn('google', { callbackUrl: 'http://localhost:3000/success'})
     }}>
-        <button type="submit" className='p-2 rounded-md bg-teal-600 text-white'>Login</button>
+        <button type="submit" className='p-2 rounded-md bg-teal-600 text-white'>Login!</button>
     </form>
   )
 }

@@ -1,11 +1,9 @@
-
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { XataAdapter } from "@auth/xata-adapter"
-import { XataClient } from "../../../../utils/xata" // or wherever you've chosen to create the client
+import { XataClient } from "../../../../../utils/xata" // or wherever you've chosen to create the client
 
 const client = new XataClient()
-
 
 
 export const authConfig = {
@@ -16,7 +14,7 @@ export const authConfig = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
         }),
     ],
-    secret: process.env.JWT_SECRET
+    secret: process.env.JWT_SECRET,
 }
 const handler = NextAuth(authConfig)
 

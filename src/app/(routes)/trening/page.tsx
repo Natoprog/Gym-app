@@ -1,22 +1,27 @@
 import { getServerSession } from 'next-auth'
 import {authConfig} from '../../api/auth/[...nextauth]/route'
 import { redirect } from "next/navigation";
+import AddTreningBtn from '@/src/components/Buttons/AddTreningBtn';
+import AddTreningModal from '@/src/components/Modals/AddTreningModal';
 
 
-export default async function Home() {
+export default async function TreningPage() {
   const session = await getServerSession(authConfig)
 
     if (!session?.user) {
         redirect("/");
     }
 
-    const weekDays = [ "Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"];
-
-    const date = new Date().getDay();
+    const showModal = () => {
+        console.log("show modal")
+    }
 
   return (
     <main className="flex justify-center items-center w-screen h-screen gap-10">
-        <p>Mamy dzisiaj: {weekDays[date]}</p>
+        <div>
+            <AddTreningBtn />
+            <AddTreningModal /> 
+        </div>
     </main>
   );
 }

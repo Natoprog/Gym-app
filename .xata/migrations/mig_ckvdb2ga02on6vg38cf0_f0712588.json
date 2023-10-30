@@ -1,0 +1,14 @@
+{
+  "id": "mig_ckvdb2ga02on6vg38cf0",
+  "parentID": "mig_ckvdauoa02on6vg38ce0",
+  "checksum": "1:f0712588bcc1ae09995b7b69c9085ffe8424c89d44575fa356c9258c2cffff7e",
+  "operations": [
+    {
+      "renameColumn": {
+        "newName": "sets",
+        "oldName": "series",
+        "table": "exercise"
+      }
+    }
+  ]
+}

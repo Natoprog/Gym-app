@@ -37,7 +37,10 @@ const tables = [
       { name: "id_token", type: "text" },
       { name: "session_state", type: "string" },
     ],
-    revLinks: [{ column: "account", table: "nextauth_users_accounts" }],
+    revLinks: [
+      { column: "account", table: "nextauth_users_accounts" },
+      { column: "user", table: "trening" },
+    ],
   },
   {
     name: "nextauth_verificationTokens",
@@ -70,6 +73,24 @@ const tables = [
     ],
     revLinks: [{ column: "session", table: "nextauth_users_sessions" }],
   },
+  {
+    name: "trening",
+    columns: [
+      { name: "name", type: "string" },
+      { name: "time", type: "float" },
+      { name: "user", type: "link", link: { table: "nextauth_accounts" } },
+    ],
+    revLinks: [{ column: "trening_connection", table: "exercise" }],
+  },
+  {
+    name: "exercise",
+    columns: [
+      { name: "name", type: "string" },
+      { name: "sets", type: "int" },
+      { name: "reps", type: "int" },
+      { name: "trening_connection", type: "link", link: { table: "trening" } },
+    ],
+  },
 ] as const;
 
 export type SchemaTables = typeof tables;
@@ -95,6 +116,12 @@ export type NextauthUsersSessionsRecord = NextauthUsersSessions & XataRecord;
 export type NextauthSessions = InferredTypes["nextauth_sessions"];
 export type NextauthSessionsRecord = NextauthSessions & XataRecord;
 
+export type Trening = InferredTypes["trening"];
+export type TreningRecord = Trening & XataRecord;
+
+export type Exercise = InferredTypes["exercise"];
+export type ExerciseRecord = Exercise & XataRecord;
+
 export type DatabaseSchema = {
   nextauth_users: NextauthUsersRecord;
   nextauth_accounts: NextauthAccountsRecord;
@@ -102,6 +129,8 @@ export type DatabaseSchema = {
   nextauth_users_accounts: NextauthUsersAccountsRecord;
   nextauth_users_sessions: NextauthUsersSessionsRecord;
   nextauth_sessions: NextauthSessionsRecord;
+  trening: TreningRecord;
+  exercise: ExerciseRecord;
 };
 
 const DatabaseClient = buildClient();

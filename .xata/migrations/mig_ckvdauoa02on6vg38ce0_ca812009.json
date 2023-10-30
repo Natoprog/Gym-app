@@ -1,0 +1,16 @@
+{
+  "id": "mig_ckvdauoa02on6vg38ce0",
+  "parentID": "mig_ckvdagpfg13mgorvrvdg",
+  "checksum": "1:ca8120094ef483b17d93649c61658cfb612780135996baad2723b868a4290cbe",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "reps",
+          "type": "int"
+        },
+        "table": "exercise"
+      }
+    }
+  ]
+}

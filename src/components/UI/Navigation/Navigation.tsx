@@ -11,7 +11,7 @@ export default function Navigation() {
         <CgGym size={25} />
         <span>Trening</span>
       </Link>
-      <Link href="#" className="flex flex-col items-center">
+      <Link href="/plan" className="flex flex-col items-center">
         <IoCalendarOutline size={25} />
         <span>Plan</span>
       </Link>

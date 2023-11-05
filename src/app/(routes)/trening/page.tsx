@@ -20,7 +20,7 @@ export default async function TreningPage() {
     <main className="flex justify-center items-center w-screen h-screen gap-10">
         <div>
             <AddTreningBtn />
-            <AddTreningModal /> 
+            <AddTreningModal />
         </div>
     </main>
   );

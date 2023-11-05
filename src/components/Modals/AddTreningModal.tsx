@@ -20,7 +20,7 @@ export default function AddTreningModal() {
   const [trening, setTrening] = useState({
     treningInfo: {
       treningName: "",
-      treningTime: 0,
+      treningTime: NaN,
     },
   });
 
@@ -34,7 +34,7 @@ export default function AddTreningModal() {
             time: trening.treningInfo.treningTime,
         }),
         });
-    await console.log(data);
+    console.log(data);
     setTrening(prev => ({...prev, treningInfo: {treningName: "", treningTime: NaN}}));
     
   };

@@ -20,6 +20,7 @@ const tables = [
       { column: "user", table: "nextauth_users_accounts" },
       { column: "user", table: "nextauth_users_sessions" },
       { column: "user", table: "nextauth_sessions" },
+      { column: "user", table: "trening" },
     ],
   },
   {
@@ -37,10 +38,7 @@ const tables = [
       { name: "id_token", type: "text" },
       { name: "session_state", type: "string" },
     ],
-    revLinks: [
-      { column: "account", table: "nextauth_users_accounts" },
-      { column: "user", table: "trening" },
-    ],
+    revLinks: [{ column: "account", table: "nextauth_users_accounts" }],
   },
   {
     name: "nextauth_verificationTokens",
@@ -78,7 +76,7 @@ const tables = [
     columns: [
       { name: "name", type: "string" },
       { name: "time", type: "float" },
-      { name: "user", type: "link", link: { table: "nextauth_accounts" } },
+      { name: "user", type: "link", link: { table: "nextauth_users" } },
     ],
     revLinks: [{ column: "trening_connection", table: "exercise" }],
   },

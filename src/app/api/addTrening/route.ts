@@ -11,6 +11,7 @@ export async function POST(request: Request) {
     const res = await client.db.trening.create({
         name: body.name,
         time: body.time,
+        user: body.user,
     })
     return Response.json(res)
     // if(!session?.user){

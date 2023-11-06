@@ -1,17 +1,21 @@
 "use client";
 
-import { BiTime } from "react-icons/bi";
 import { useSearchParams } from "next/navigation";
-import { AiOutlineClose } from "react-icons/ai";
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import AddExerciseForm from "../Form/AddExerciseForm";
 import AddTreningForm from "../Form/AddTreningForm";
+import {useSession, getSession} from "next-auth/react"
+import { getXataClient } from "./../../../utils/xata";
+
 
 export default function AddTreningModal() {
   const searchParams = useSearchParams();
   const modalRef = useRef<HTMLDialogElement | null>(null);
   const showModal = searchParams.get("modal");
+
+
+  const {data: session} = useSession()
+
 
   const [exercise, setExercise] = useState([
     { exercise: "", series: 0, reps: 0 },
@@ -41,7 +45,6 @@ export default function AddTreningModal() {
 
   const handleAddExercise = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(e.target);
     setExercise([...exercise, { exercise: "", series: 0, reps: 0 }]);
   };
 

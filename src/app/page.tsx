@@ -1,12 +1,11 @@
-import { getServerSession } from 'next-auth'
-import {authConfig} from './api/auth/[...nextauth]/route'
+import { auth } from "@/auth";
 import LogOutBtn  from '@/src/components/Loging/LogOutBtn'
 import Link from 'next/link'
 
 
 export default async function Index() {
 
-  const session = await getServerSession(authConfig)
+  const session = await auth()
 
   return (
     <main className='flex justify-center items-center w-screen h-screen gap-10'>

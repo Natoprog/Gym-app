@@ -1,21 +1,18 @@
-import NextAuth from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
-import { XataAdapter } from "@auth/xata-adapter"
-import { XataClient } from "../../../../../utils/xata" // or wherever you've chosen to create the client
 
-const client = new XataClient()
+export { GET, POST } from "@/auth"
+// export const runtime = "edge" // optional
 
 
-export const authConfig = {
-    adapter: XataAdapter(client),
-    providers: [
-        GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID || "",
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
-        }),
-    ],
-    secret: process.env.JWT_SECRET,
-}
-const handler = NextAuth(authConfig)
+// import { handlers } from "@/auth";
+// import type { NextRequest } from "next/server";
 
-export { handler as GET, handler as POST }
+// const { GET: AuthGET, POST } = handlers;
+// export { POST };
+
+// // Showcasing advanced initialization in Route Handlers
+// export async function GET(request: NextRequest) {
+//   // Do something with request
+//   const response = await AuthGET(request);
+//   // Do something with response
+//   return response;
+// }

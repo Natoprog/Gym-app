@@ -1,17 +1,14 @@
 import { BiTime } from "react-icons/bi";
 import { getXataClient } from "../../../../utils/xata";
 import { HiOutlineTrash } from "react-icons/hi";
-import { getServerSession } from "next-auth";
-import { authConfig } from "@/src/app/api/auth/[...nextauth]/route";
+import { auth } from "@/auth";
 
 const xata = getXataClient();
 
 export default async function GetTrenings() {
 
-    const session = await getServerSession(authConfig);
+    const session = await auth();
     const data = await xata.db.trening.filter({"user.email": session?.user?.email}).getAll();
-    console.log(data)
-
   
 
   return (

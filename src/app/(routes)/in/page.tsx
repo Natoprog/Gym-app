@@ -1,9 +1,9 @@
-import { getServerSession } from 'next-auth'
-import {authConfig} from '../../api/auth/[...nextauth]/route'
+import { auth } from "@/auth";
+import {authOptions} from '../../api/auth/authOptions'
 import Image from 'next/image'
 
 export default async function In() {
-    const session = await getServerSession(authConfig)
+    const session = await auth()
 
     if (!session || !session.user?.image) {
         console.log('no')

@@ -1,5 +1,4 @@
 import { auth } from "@/auth";
-import {authOptions} from '../../api/auth/authOptions'
 import Image from 'next/image'
 
 export default async function In() {

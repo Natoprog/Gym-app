@@ -1,5 +1,5 @@
 "use client";
-import { signOut } from "@/auth";
+import { signOut } from "next-auth/react";
 import React from "react";
 
 export default function LoginBtn() {

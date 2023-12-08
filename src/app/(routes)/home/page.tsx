@@ -1,9 +1,8 @@
-import getServerSession from 'next-auth'
-import {authOptions} from '../../api/auth/authOptions'
+import {auth} from "@/auth";
 
 
 export default async function Home() {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
 
 
     const weekDays = [ "Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"];

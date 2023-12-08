@@ -36,6 +36,7 @@ export default function AddTreningModal() {
         body: JSON.stringify({
             name: trening.treningInfo.treningName,
             time: trening.treningInfo.treningTime,
+            user: session?.user?.id,
         }),
         });
     console.log(data);

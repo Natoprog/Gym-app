@@ -1,0 +1,18 @@
+{
+  "id": "mig_cloft9qq6ou3vimj6a70",
+  "parentID": "mig_cloft62q6ou3vimj6a50",
+  "checksum": "1:bd520cac32a75e006dbc0088a3ad234485c556502a47e368a06d5ce33134e634",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "test",
+          "type": "bool",
+          "notNull": true,
+          "defaultValue": "true"
+        },
+        "table": "test"
+      }
+    }
+  ]
+}

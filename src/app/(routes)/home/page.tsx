@@ -1,14 +1,9 @@
-import { getServerSession } from 'next-auth'
-import {authConfig} from '../../api/auth/[...nextauth]/route'
-import { redirect } from "next/navigation";
+import {auth} from "@/auth";
 
 
 export default async function Home() {
-  const session = await getServerSession(authConfig)
+  const session = await auth()
 
-    if (!session?.user) {
-        redirect("/");
-    }
 
     const weekDays = [ "Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"];
 

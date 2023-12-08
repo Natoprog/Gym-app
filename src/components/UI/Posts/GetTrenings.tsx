@@ -1,15 +1,15 @@
 import { BiTime } from "react-icons/bi";
 import { getXataClient } from "../../../../utils/xata";
-import { HiOutlineTrash } from "react-icons/hi";
 import { auth } from "@/auth";
+import RemoveTreninngBtn from "../../Buttons/RemoveTreninngBtn";
 
 const xata = getXataClient();
 
 export default async function GetTrenings() {
-
-    const session = await auth();
-    const data = await xata.db.trening.filter({"user.email": session?.user?.email}).getAll();
-  
+  const session = await auth();
+  const data = await xata.db.trening
+    .filter({ "user.id": session?.user?.id ? session?.user?.id : "" })
+    .getAll();
 
   return (
     <>
@@ -24,9 +24,7 @@ export default async function GetTrenings() {
               <BiTime color="white" />
               <h4 className="text-white">{trening.time}</h4>
             </div>
-            <button>
-              <HiOutlineTrash color="white" size={20} />
-            </button>
+            <RemoveTreninngBtn />
           </div>
           <button className="w-full absolute bottom-0 left-0 flex justify-center bg-purple-200 rounded-b-[20px] p-1">
             START

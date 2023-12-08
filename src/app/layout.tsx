@@ -1,22 +1,23 @@
-import { Inter } from 'next/font/google'
-import './globals.css'
-import Navigation from '../components/UI/Navigation/Navigation'
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Navigation from "../components/UI/Navigation/Navigation";
+import Provider from "../context/client-provider";
 
-
-const inter = Inter({ subsets: ['latin'] })
-
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
-  children
+  children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="pl">
-        <body className={inter.className}>
-            {children}
-            <Navigation />
-        </body>
+      <body className={inter.className}>
+        <Provider>
+          {children}
+          <Navigation />
+        </Provider>
+      </body>
     </html>
-  )
+  );
 }

@@ -10,7 +10,7 @@ export default async function In() {
 
     return (
         <main className='flex justify-center items-center w-screen h-screen gap-10'>
-            <Image src={session?.user?.image || ""} alt='user image' width={100} height={100} loading='lazy'/>
+            <Image src={session?.user?.image || ""} alt='user image' width={100} height={100} priority/>
             <h1>Hello</h1>
         </main>
     )

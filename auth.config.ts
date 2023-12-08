@@ -6,7 +6,6 @@ import { XataClient } from "./utils/xata";
 const client = new XataClient();
 
 export const authConfig = {
-  debug: true,
   adapter: XataAdapter(client),
   providers: [
     GoogleProvider({
@@ -29,8 +28,5 @@ export const authConfig = {
       return session;
     },
   },
-  // session: {
-  //   strategy: "jwt",
-  // },
   secret: process.env.AUTH_SECRET,
 } satisfies NextAuthConfig;

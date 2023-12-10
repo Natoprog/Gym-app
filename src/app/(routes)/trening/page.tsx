@@ -5,8 +5,8 @@ import GetTrenings from "@/src/components/UI/Posts/GetTrenings";
 export default async function TreningPage() {
 
   return (
-    <main className="flex justify-center items-center w-screen h-screen gap-10 flex-col">
-      <div>
+    <main className="min-h-[calc(100vh-6rem)] flex justify-center items-center gap-10 flex-col">
+      <div className="mt-5">
         <AddTreningBtn />
         <AddTreningModal />
       </div>

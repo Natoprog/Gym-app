@@ -1,21 +1,19 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { redirect, useSearchParams, useRouter} from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import AddExerciseForm from "../Form/AddExerciseForm";
 import AddTreningForm from "../Form/AddTreningForm";
-import {useSession, getSession} from "next-auth/react"
-import { getXataClient } from "./../../../utils/xata";
-
+import { useSession } from "next-auth/react";
+import { revalidatePath } from "next/cache";
 
 export default function AddTreningModal() {
   const searchParams = useSearchParams();
   const modalRef = useRef<HTMLDialogElement | null>(null);
   const showModal = searchParams.get("modal");
+  const router = useRouter();
 
-
-  const {data: session} = useSession()
-
+  const { data: session } = useSession();
 
   const [exercise, setExercise] = useState([
     { exercise: "", series: 0, reps: 0 },
@@ -31,24 +29,26 @@ export default function AddTreningModal() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const data = fetch("/api/addTrening", {
-        method: "POST",
-        body: JSON.stringify({
-            name: trening.treningInfo.treningName,
-            time: trening.treningInfo.treningTime,
-            user: session?.user?.id,
-        }),
-        });
+    const data = await fetch("/api/addTrening", {
+      method: "POST",
+      body: JSON.stringify({
+        name: trening.treningInfo.treningName,
+        time: trening.treningInfo.treningTime,
+        user: session?.user?.id,
+      }),
+    });
     console.log(data);
-    setTrening(prev => ({...prev, treningInfo: {treningName: "", treningTime: NaN}}));
-    
+    setTrening((prev) => ({
+      ...prev,
+      treningInfo: { treningName: "", treningTime: NaN },
+    }));
+    router.push("/trening");
   };
 
   const handleAddExercise = (e: React.FormEvent) => {
     e.preventDefault();
     setExercise([...exercise, { exercise: "", series: 0, reps: 0 }]);
   };
-
 
   useEffect(() => {
     if (showModal === "true") {

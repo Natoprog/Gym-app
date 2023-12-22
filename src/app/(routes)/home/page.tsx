@@ -10,7 +10,7 @@ export default async function Home() {
     const date = new Date().getDay();
 
   return (
-    <main className="flex justify-center items-center w-screen h-screen gap-10">
+    <main className="flex justify-center items-center min-h-[calc(100vh-6rem)] gap-10">
         <p>Mamy dzisiaj: {weekDays[date]}</p>
     </main>
   );

@@ -6,7 +6,7 @@ import { RiAccountCircleFill } from "react-icons/ri";
 
 export default function Navigation() {
   return (
-    <nav className="w-full fixed bottom-0 left-0 flex justify-center gap-10 items-center p-5 bg-slate-700 text-white">
+    <nav className="w-full h-24 sticky bottom-0 left-0 flex justify-center gap-10 items-center p-5 bg-slate-700 text-white">
       <Link href="/home" className="flex flex-col items-center">
         <CgGym size={25} />
         <span>Trening</span>

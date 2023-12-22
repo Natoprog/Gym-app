@@ -27,6 +27,12 @@ export const authConfig = {
       }
       return session;
     },
+    authorized({ auth }) {
+      return !!auth?.user // this ensures there is a logged in user for -every- request
+    }
+  },
+  pages: {
+    signIn: '/signin' // overrides the next-auth default signin page https://authjs.dev/guides/basics/pages
   },
   secret: process.env.AUTH_SECRET,
 } satisfies NextAuthConfig;

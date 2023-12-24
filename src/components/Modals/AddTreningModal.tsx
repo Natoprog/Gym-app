@@ -1,6 +1,6 @@
 "use client";
 
-import { redirect, useSearchParams, useRouter} from "next/navigation";
+import { redirect, useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import AddExerciseForm from "../Form/AddExerciseForm";
 import AddTreningForm from "../Form/AddTreningForm";
@@ -16,8 +16,7 @@ export default function AddTreningModal() {
   const { data: session } = useSession();
 
   const [exercise, setExercise] = useState([
-    { exercise: "", series: 0, reps: 0 },
-    { exercise: "", series: 0, reps: 0 },
+    { exercise: "", series: NaN, reps: NaN },
   ]);
   const [trening, setTrening] = useState({
     treningInfo: {
@@ -29,25 +28,36 @@ export default function AddTreningModal() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const data = await fetch("/api/addTrening", {
-      method: "POST",
-      body: JSON.stringify({
-        name: trening.treningInfo.treningName,
-        time: trening.treningInfo.treningTime,
-        user: session?.user?.id,
-      }),
-    });
-    console.log(data);
+    if (exercise.length > 1) {
+      const data = await fetch("/api/addTrening", {
+        method: "POST",
+        body: JSON.stringify({
+          name: trening.treningInfo.treningName,
+          time: trening.treningInfo.treningTime,
+          user: session?.user?.id,
+        }),
+      });
+      const response = await data.json();
+      const addExercise = await fetch("/api/addExercise", {
+        method: "POST",
+        body: JSON.stringify({
+          exercise,
+          treningId: response.id,
+        }),
+      });
+    }
+
     setTrening((prev) => ({
       ...prev,
       treningInfo: { treningName: "", treningTime: NaN },
     }));
+    setExercise([{ exercise: "", series: NaN, reps: NaN }]);
     router.push("/trening");
   };
 
   const handleAddExercise = (e: React.FormEvent) => {
     e.preventDefault();
-    setExercise([...exercise, { exercise: "", series: 0, reps: 0 }]);
+    setExercise([...exercise, { exercise: "", series: NaN, reps: NaN }]);
   };
 
   useEffect(() => {
@@ -73,9 +83,14 @@ export default function AddTreningModal() {
                 time: trening.treningInfo.treningTime,
               }}
             />
-            {exercise.map((ex, index) => {
-              return <AddExerciseForm key={index} />;
-            })}
+            {exercise.map((_, index) => (
+              <AddExerciseForm
+                key={index}
+                onChange={setExercise}
+                index={index}
+                exercise={exercise}
+              />
+            ))}
             <button onClick={handleAddExercise}>Dodaj kolejne ćwiczenie</button>
           </form>
           <div className="w-full flex justify-center">

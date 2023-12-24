@@ -14,7 +14,7 @@ export default async function GetTrenings() {
   const response = await xata.db.exercise
     .select(["*", "trening_connection.id"])
     .getMany();
-  console.log(response);
+
   return (
     <>
       {data.map((trening) => (

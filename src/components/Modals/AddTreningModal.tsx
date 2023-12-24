@@ -1,11 +1,10 @@
 "use client";
 
-import { redirect, useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import AddExerciseForm from "../Form/AddExerciseForm";
 import AddTreningForm from "../Form/AddTreningForm";
 import { useSession } from "next-auth/react";
-import { revalidatePath } from "next/cache";
 
 export default function AddTreningModal() {
   const searchParams = useSearchParams();
@@ -43,6 +42,15 @@ export default function AddTreningModal() {
         body: JSON.stringify({
           exercise,
           treningId: response.id,
+        }),
+      });
+    } else if (exercise.length == 0) {
+      const data = await fetch("/api/addTrening", {
+        method: "POST",
+        body: JSON.stringify({
+          name: trening.treningInfo.treningName,
+          time: trening.treningInfo.treningTime,
+          user: session?.user?.id,
         }),
       });
     }

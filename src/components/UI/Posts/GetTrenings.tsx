@@ -11,6 +11,10 @@ export default async function GetTrenings() {
     .filter({ "user.id": session?.user?.id ? session?.user?.id : "" })
     .getAll();
 
+  const response = await xata.db.exercise
+    .select(["*", "trening_connection.id"])
+    .getMany();
+  console.log(response);
   return (
     <>
       {data.map((trening) => (
@@ -24,7 +28,19 @@ export default async function GetTrenings() {
               <BiTime color="white" />
               <h4 className="text-white">{trening.time}</h4>
             </div>
-            <RemoveTreninngBtn id={trening.id}/>
+            <RemoveTreninngBtn id={trening.id} />
+          </div>
+          <div>
+            {response.map((exercise) => {
+              if (trening.id === exercise?.trening_connection?.id)
+                return (
+                  <div key={exercise.id}>
+                    <p className="text-white">{exercise.name}</p>
+                    <p className="text-white">{exercise.sets}</p>
+                    <p className="text-white">{exercise.reps}</p>
+                  </div>
+                );
+            })}
           </div>
           <button className="w-full absolute bottom-0 left-0 flex justify-center bg-purple-200 rounded-b-[20px] p-1">
             START

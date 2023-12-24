@@ -30,8 +30,6 @@ export default function AddTreningForm({
         ...prev,
         treningInfo: { ...prev.treningInfo, [name]: value },
       }));
-    console.log(name);
-    console.log(trening);
   };
 
   return (

@@ -37,6 +37,12 @@ export default function AddTreningModal() {
         }),
       });
       const response = await data.json();
+      exercise.forEach((item, index) => {
+        if (item.exercise == "") {
+          exercise.splice(index, 1);
+        }
+      });
+
       const addExercise = await fetch("/api/addExercise", {
         method: "POST",
         body: JSON.stringify({

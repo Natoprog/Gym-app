@@ -16,7 +16,7 @@ export default function AddTreningForm({
       };
     }>
   >;
-  trening: { name: string; time: number | undefined };
+  trening: { name: string; time: number };
 }) {
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
@@ -31,8 +31,6 @@ export default function AddTreningForm({
         treningInfo: { ...prev.treningInfo, [name]: value },
       }));
   };
-
-  
 
   return (
     <div className="w-full bg-[#7747B3] min-h-[100px] flex flex-col justify-between rounded-md">

@@ -27,7 +27,7 @@ export default function AddTreningModal() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (exercise.length > 1) {
+    if (exercise.length >= 1) {
       const data = await fetch("/api/addTrening", {
         method: "POST",
         body: JSON.stringify({
@@ -82,42 +82,45 @@ export default function AddTreningModal() {
     }
   }, [showModal]);
 
-  const modal: JSX.Element | null =
-    showModal === "true" ? (
-      <dialog
-        ref={modalRef}
-        className="fixed w-5/6 h-5/6 top-50 left-50 -translate-x-50 -translate-y-50 z-10 rounded-md bg-[#A86AF7] backdrop:bg-gray-800/50"
-      >
-        <div className="inset-y-0 left-0 rounded-md h-full">
-          <form className="flex flex-col">
-            <AddTreningForm
-              onChange={setTrening}
-              trening={{
-                name: trening.treningInfo.treningName,
-                time: trening.treningInfo.treningTime,
-              }}
-            />
-            {exercise.map((_, index) => (
-              <AddExerciseForm
-                key={index}
-                onChange={setExercise}
-                index={index}
-                exercise={exercise}
+  return (
+    <>
+      {showModal && (
+        <dialog
+          ref={modalRef}
+          className="fixed w-5/6 h-5/6 top-50 left-50 -translate-x-50 -translate-y-50 z-10 rounded-md bg-[#A86AF7] backdrop:bg-gray-800/50"
+        >
+          <div className="inset-y-0 left-0 rounded-md h-full">
+            <form className="flex flex-col">
+              <AddTreningForm
+                onChange={setTrening}
+                trening={{
+                  name: trening.treningInfo.treningName,
+                  time: trening.treningInfo.treningTime,
+                }}
               />
-            ))}
-            <button onClick={handleAddExercise}>Dodaj kolejne ćwiczenie</button>
-          </form>
-          <div className="w-full flex justify-center">
-            <button
-              onClick={handleSubmit}
-              className="bg-red-700 rounded-md px-5 py-1 m-2 text-white"
-            >
-              Zapisz
-            </button>
+              {exercise.map((_, index) => (
+                <AddExerciseForm
+                  key={index}
+                  onChange={setExercise}
+                  index={index}
+                  exercise={exercise}
+                />
+              ))}
+              <button onClick={handleAddExercise}>
+                Dodaj kolejne ćwiczenie
+              </button>
+            </form>
+            <div className="w-full flex justify-center">
+              <button
+                onClick={handleSubmit}
+                className="bg-red-700 rounded-md px-5 py-1 m-2 text-white"
+              >
+                Zapisz
+              </button>
+            </div>
           </div>
-        </div>
-      </dialog>
-    ) : null;
-
-  return modal;
+        </dialog>
+      )}
+    </>
+  );
 }

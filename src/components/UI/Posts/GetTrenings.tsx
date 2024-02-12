@@ -2,6 +2,8 @@ import { BiTime } from "react-icons/bi";
 import { getXataClient } from "../../../../utils/xata";
 import { auth } from "@/auth";
 import RemoveTreninngBtn from "../../Buttons/RemoveTreninngBtn";
+import EditTreningBtn from "../../Buttons/EditTreningBtn";
+import EditTreningModal from "../../Modals/EditTrening.tsx/EditTreningModal";
 
 const xata = getXataClient();
 
@@ -17,7 +19,7 @@ export default async function GetTrenings() {
 
   return (
     <>
-      {data.map((trening) => (
+      {data.map((trening, index) => (
         <div
           key={trening.id}
           className="w-5/6 bg-[#A86AF7] rounded-[20px] pt-5 px-5 pb-8 relative"
@@ -28,7 +30,11 @@ export default async function GetTrenings() {
               <BiTime color="white" />
               <h4 className="text-white">{trening.time}</h4>
             </div>
-            <RemoveTreninngBtn id={trening.id} />
+            <div className="flex justify-center items-start gap-2">
+              <EditTreningBtn id={trening.id} />
+              <EditTreningModal />
+              <RemoveTreninngBtn id={trening.id} />
+            </div>
           </div>
           <div>
             {response.map((exercise) => {

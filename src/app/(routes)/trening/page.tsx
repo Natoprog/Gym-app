@@ -1,6 +1,6 @@
 import AddTreningBtn from "@/src/components/Buttons/AddTreningBtn";
 import AddTreningModal from "@/src/components/Modals/AddTreningModal";
-import EditTreningModal from "@/src/components/Modals/EditTrening.tsx/EditTreningModal";
+import EditTreningModal from "@/src/components/Modals/EditTreningModal";
 import GetTrenings from "@/src/components/UI/Posts/GetTrenings";
 
 export default async function TreningPage() {

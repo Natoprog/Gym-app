@@ -3,7 +3,7 @@ import { getXataClient } from "../../../../utils/xata";
 import { auth } from "@/auth";
 import RemoveTreninngBtn from "../../Buttons/RemoveTreninngBtn";
 import EditTreningBtn from "../../Buttons/EditTreningBtn";
-import EditTreningModal from "../../Modals/EditTrening.tsx/EditTreningModal";
+import EditTreningModal from "../../Modals/EditTreningModal";
 
 const xata = getXataClient();
 

@@ -1,4 +1,4 @@
-import { XataClient } from "../../../utils/xata";
+import { XataClient } from "../../../../db/xata-client";
 
 const client = new XataClient();
 

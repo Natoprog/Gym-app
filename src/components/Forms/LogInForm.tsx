@@ -1,5 +1,5 @@
 import React from "react";
-import { LoginBtn } from "./LogInBtn";
+import { LoginBtn } from "../Buttons/LogInBtn";
 import { AiFillGoogleCircle } from "react-icons/ai";
 
 export default function LogInForm() {

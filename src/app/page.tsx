@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import LogOutBtn  from '@/src/components/Loging/LogOutBtn'
+import LogOutBtn  from '@/src/components/Buttons/LogOutBtn'
 import Link from 'next/link'
 
 

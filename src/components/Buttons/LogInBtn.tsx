@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { LoginAction } from "../../app/serverActions/LoginAction";
+import { LoginAction } from "../../../serverActions/LoginAction";
 
 type LoginBtnProps = {
   text: string;

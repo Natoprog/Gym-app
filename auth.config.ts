@@ -1,7 +1,7 @@
 import type { NextAuthConfig } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { XataAdapter } from "@auth/xata-adapter";
-import { XataClient } from "./utils/xata";
+import { XataClient } from "./src/utils/xata";
 
 const client = new XataClient();
 
@@ -28,11 +28,11 @@ export const authConfig = {
       return session;
     },
     authorized({ auth }) {
-      return !!auth?.user // this ensures there is a logged in user for -every- request
-    }
+      return !!auth?.user; // this ensures there is a logged in user for -every- request
+    },
   },
   pages: {
-    signIn: '/signin' // overrides the next-auth default signin page https://authjs.dev/guides/basics/pages
+    signIn: "/signin", // overrides the next-auth default signin page https://authjs.dev/guides/basics/pages
   },
   secret: process.env.AUTH_SECRET,
 } satisfies NextAuthConfig;

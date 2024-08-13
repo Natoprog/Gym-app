@@ -1,5 +1,5 @@
 import { HiOutlineTrash } from "react-icons/hi";
-import { getXataClient } from "@/utils/xata";
+import { getXataClient } from "@/src/utils/xata";
 import { revalidatePath } from "next/cache";
 
 const xata = getXataClient();

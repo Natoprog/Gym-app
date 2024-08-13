@@ -1,5 +1,5 @@
 import { BiTime } from "react-icons/bi";
-import { getXataClient } from "../../../../utils/xata";
+import { getXataClient } from "../../../utils/xata";
 import { auth } from "@/auth";
 import RemoveTreninngBtn from "../../Buttons/RemoveTreninngBtn";
 

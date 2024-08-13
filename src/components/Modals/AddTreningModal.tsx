@@ -2,8 +2,8 @@
 
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import AddExerciseForm from "../Form/AddExerciseForm";
-import AddTreningForm from "../Form/AddTreningForm";
+import AddExerciseForm from "../Forms/AddExerciseForm";
+import AddTreningForm from "../Forms/AddTreningForm";
 import { useSession } from "next-auth/react";
 
 export default function AddTreningModal() {

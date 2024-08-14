@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Natan-Luczak-s-workspace-n3cmpc.eu-central-1.xata.sh/db/MuscleLog",
+  "codegen": {
+    "output": "src/db/xata.ts"
+  }
+}

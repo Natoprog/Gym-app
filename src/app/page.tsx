@@ -2,12 +2,10 @@ import { auth } from "@/auth";
 import LogOutBtn  from '@/src/components/Loging/LogOutBtn'
 import Link from 'next/link'
 
-
 export default async function Index() {
 
   const session = await auth()
 
-  console.log(session)
 
   return (
     <main className='flex justify-center items-center w-100 h-[calc(100vh-6rem)] gap-10'>

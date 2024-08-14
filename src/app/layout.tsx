@@ -13,10 +13,10 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body className={inter.className}>
-        <Provider>
+        {/* <Provider> */}
           {children}
           <Navigation />
-        </Provider>
+        {/* </Provider> */}
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 {
-  "databaseURL": "https://Natan-Luczak-s-workspace-n3cmpc.eu-central-1.xata.sh/db/Gym-Project-Database",
+  "databaseURL": "https://Natan-Luczak-s-workspace-n3cmpc.eu-central-1.xata.sh/db/MuscleLog",
   "codegen": {
-    "output": "utils/xata.ts"
+    "output": "src/db/xata.ts"
   }
 }

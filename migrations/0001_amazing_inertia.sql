@@ -1,0 +1,1 @@
+ALTER TABLE "exercise" ALTER COLUMN "id" SET DATA TYPE serial;

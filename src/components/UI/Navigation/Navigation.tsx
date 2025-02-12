@@ -3,20 +3,42 @@ import { AiFillHome } from "react-icons/ai";
 import { CgGym } from "react-icons/cg";
 import { IoCalendarOutline } from "react-icons/io5";
 import { RiAccountCircleFill } from "react-icons/ri";
+import Image from "next/image";
+import { auth } from "@/auth";
 
-export default function Navigation() {
+export default async function Navigation() {
+  const session = await auth();
+
   return (
     <nav className="w-full h-24 sticky bottom-0 left-0 flex justify-center gap-10 items-center p-5 bg-slate-700 text-white">
+      <Link href="/workout" className="flex flex-col items-center">
+        <span>Workout</span>
+      </Link>
       <Link href="/home" className="flex flex-col items-center">
         <CgGym size={25} />
         <span>Trening</span>
+      </Link>
+      <Link href="/exercise" className="flex flex-col items-center">
+        <AiFillHome size={25} />
+        <span>Exercise</span>
       </Link>
       <Link href="/plan" className="flex flex-col items-center">
         <IoCalendarOutline size={25} />
         <span>Plan</span>
       </Link>
       <Link href="#" className="flex flex-col items-center">
-        <RiAccountCircleFill size={25} />
+        {!session ? (
+          <RiAccountCircleFill size={25} />
+        ) : (
+          <Image
+            src={session?.user?.image || ""}
+            alt="user image"
+            width={25}
+            height={25}
+            priority
+            className="rounded-full border-gray-50 border-solid border"
+          />
+        )}
         <span>Konto</span>
       </Link>
     </nav>

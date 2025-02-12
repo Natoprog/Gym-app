@@ -1,17 +1,33 @@
-import { XataClient } from "../../../utils/xata";
+import { NextResponse } from "next/server";
+import { db } from "@/src/db/drizzle-client"; // Załóżmy, że masz plik `db.ts` do konfiguracji Drizzle
+import { exercise } from "@/src/db/schema";
+// Tabela ćwiczeń w Drizzle ORM
 
-const client = new XataClient();
+export async function POST(req: Request) {
+  try {
+    const { name, sets, reps, weight, userId } = await req.json();
 
-export async function POST(request: Request) {
-  const body = await request.json();
-  console.log(body);
-  body.exercise.forEach(async (exercise: any) => {
-    await client.db.exercise.create({
-      name: exercise.exercise,
-      sets: exercise.series,
-      reps: exercise.reps,
-      trening_connection: body.treningId,
+    if (!name || typeof name !== "string") {
+      return NextResponse.json(
+        { error: "Nieprawidłowe dane" },
+        { status: 400 }
+      );
+    }
+
+    await db.insert(exercise).values({
+      name,
+      sets: sets ?? null,
+      reps: reps ?? null,
+      weight: weight ?? null,
+      userId: userId, // Powiązanie z użytkownikiem
     });
-  });
-  return Response.json({ ok: "ok" });
+
+    return NextResponse.json(
+      { message: "Ćwiczenie zapisane" },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error("Błąd zapisu ćwiczenia:", error);
+    return NextResponse.json({ error: "Błąd serwera" }, { status: 500 });
+  }
 }

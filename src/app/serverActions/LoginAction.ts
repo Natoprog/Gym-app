@@ -3,5 +3,5 @@
 import { signIn } from "@/auth";
 
 export async function LoginAction() {
-  await signIn("google", {redirectTo: '/in'});
+  await signIn("google", { redirectTo: "/in" });
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type JSX } from "react";
 import AddExerciseForm from "../Form/AddExerciseForm";
 import AddTreningForm from "../Form/AddTreningForm";
 import { useSession } from "next-auth/react";

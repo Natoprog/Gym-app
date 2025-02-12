@@ -1,20 +1,21 @@
 import { auth } from "@/auth";
-import LogOutBtn  from '@/src/components/Loging/LogOutBtn'
-import Link from 'next/link'
-
+import LogOutBtn from "@/src/components/Loging/LogOutBtn";
+import Link from "next/link";
 
 export default async function Index() {
-
-  const session = await auth()
-
-  console.log(session)
+  const session = await auth();
 
   return (
-    <main className='flex justify-center items-center w-100 h-[calc(100vh-6rem)] gap-10'>
-      {session ? (<h1>Zalogowano jako: {session?.user?.name}</h1>) : null}
-      {session ? <LogOutBtn /> : null}
-      {session ? <Link href='/home'>Przejdź do strony głównej</Link> : null}
-      {!session ? <Link href='/signin'>Przejdź do logowania</Link> : null}
+    <main className="w-100 h-[calc(100vh-6rem)] gap-10 bg-[#111115] text-white">
+      <div className="w-100 flex justify-center pt-10 pb-10 bg-blue-700 rounded-b-full">
+        <h2 className="text-3xl">Muscule Log</h2>
+      </div>
+      <div className="w-100 flex flex-col p-10">
+        <h3 className="text-2xl">Welcome</h3>
+        {session ? <p>{session?.user?.name}</p> : null}
+        {!session ? <Link href="/signin">Sign in to continue</Link> : null}
+        <LogOutBtn />
+      </div>
     </main>
-  )
+  );
 }

@@ -9,14 +9,22 @@ import { auth } from "@/auth";
 export default async function Navigation() {
   const session = await auth();
 
+  const date = new Date();
+
+  const dateString = date.toISOString().split("T")[0];
+
+  console.log(dateString);
+
   return (
     <nav className="w-full h-24 sticky bottom-0 left-0 flex justify-center gap-10 items-center p-5 bg-slate-700 text-white">
-      <Link href="/workout" className="flex flex-col items-center">
-        <span>Workout</span>
-      </Link>
-      <Link href="/home" className="flex flex-col items-center">
+      <Link
+        href={`/workout/${date.getFullYear()}/${
+          date.getMonth() + 1
+        }/${date.getDate()}`}
+        className="flex flex-col items-center"
+      >
         <CgGym size={25} />
-        <span>Trening</span>
+        <span>Workout</span>
       </Link>
       <Link href="/exercise" className="flex flex-col items-center">
         <AiFillHome size={25} />

@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server";
-import { db } from "@/src/db/drizzle-client"; // Załóżmy, że masz plik `db.ts` do konfiguracji Drizzle
-import { exercise } from "@/src/db/schema";
-// Tabela ćwiczeń w Drizzle ORM
+import { db } from "@/src/db/drizzle-client";
+import { exercises } from "@/src/db/schema";
 
 export async function POST(req: Request) {
   try {
-    const { name, sets, reps, weight, userId } = await req.json();
+    const { name, userId, date } = await req.json();
 
     if (!name || typeof name !== "string") {
       return NextResponse.json(
@@ -14,12 +13,33 @@ export async function POST(req: Request) {
       );
     }
 
-    await db.insert(exercise).values({
-      name,
-      sets: sets ?? null,
-      reps: reps ?? null,
-      weight: weight ?? null,
-      userId: userId, // Powiązanie z użytkownikiem
+    const baseUrl = process.env.VERCEL_URL
+      ? "https://" + process.env.VERCEL_URL
+      : "http://localhost:3000";
+
+    const workoutRes = await fetch(`${baseUrl}/api/addWorkout`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        date: date,
+        userId: userId,
+      }),
+    });
+
+    if (!workoutRes.ok) {
+      return NextResponse.json(
+        { error: "Failed to get or create workout" },
+        { status: 500 }
+      );
+    }
+
+    const workout = await workoutRes.json();
+
+    // Dodaj ćwiczenie do treningu
+    const newExercise = await db.insert(exercises).values({
+      userId: userId,
+      name: name,
+      workoutId: workout.id,
     });
 
     return NextResponse.json(

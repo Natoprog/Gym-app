@@ -15,11 +15,10 @@ export default function AddExerciseButton({
 }) {
   const [showModal, setShowModal] = useState(false);
 
-  console.log(showModal);
   return (
     <>
       <button
-        className="flex items-center gap-2 px-4 py-2 border border-blue-500 rounded-lg text-blue-400 bg-black hover:bg-gray-900 transition"
+        className="flex items-center gap-2 px-4 py-2 border border-blue-500 rounded-lg text-blue-400 bg-black hover:bg-gray-900 transition cursor-pointer"
         onClick={() => setShowModal(!showModal)}
       >
         <span className="text-2xl">{icon}</span>

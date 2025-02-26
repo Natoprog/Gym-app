@@ -37,12 +37,12 @@ export default function AddExerciseForm({
       );
   };
   return (
-    <div className="flex bg-slate-600 flex-col gap-2 mt-5 mx-5 rounded-md text-white focus:outline-none">
+    <div className="flex bg-slate-600 flex-col gap-2 mt-5 mx-5 rounded-md text-white focus:outline-hidden">
       <input
         type="text"
         name="exercise"
         placeholder="ćwiczenie"
-        className="bg-transparent ml-2 mt-2  focus:outline-none"
+        className="bg-transparent ml-2 mt-2  focus:outline-hidden"
         onChange={handleChange}
         value={exercise[index].exercise}
       />
@@ -50,7 +50,7 @@ export default function AddExerciseForm({
         type="number"
         name="series"
         placeholder="serie"
-        className="bg-transparent ml-2 focus:outline-none"
+        className="bg-transparent ml-2 focus:outline-hidden"
         onChange={handleChange}
         value={exercise[index].series}
       />
@@ -58,7 +58,7 @@ export default function AddExerciseForm({
         type="number"
         name="reps"
         placeholder="powtórzenia"
-        className="bg-transparent ml-2 mb-2 focus:outline-none"
+        className="bg-transparent ml-2 mb-2 focus:outline-hidden"
         onChange={handleChange}
         value={exercise[index].reps}
       />

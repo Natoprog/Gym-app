@@ -38,7 +38,7 @@ export default function AddTreningForm({
         <input
           type="text"
           placeholder="Nazwa"
-          className="bg-transparent ml-5 mt-2 border-none focus:outline-none min-w-1/2 text-white"
+          className="bg-transparent ml-5 mt-2 border-none focus:outline-hidden min-w-1/2 text-white"
           onChange={handleChange}
           name="treningName"
           value={trening.name}
@@ -52,7 +52,7 @@ export default function AddTreningForm({
         <input
           type="number"
           placeholder="1,5 godz"
-          className="bg-transparent text-white focus:outline-none"
+          className="bg-transparent text-white focus:outline-hidden"
           onChange={handleChange}
           name="treningTime"
           value={trening.time}

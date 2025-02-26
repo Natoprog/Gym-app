@@ -9,8 +9,10 @@ export default function LoginBtn() {
 
   return (
     <button
-      className="p-2 rounded-md bg-teal-600 text-white flex justify-start items-center gap-1"
+      className="p-2 rounded-md bg-teal-600 text-white flex justify-start items-center gap-1 cursor-pointer"
       onClick={handleSignOut}
-    >Wyloguj się!</button>
+    >
+      Wyloguj się!
+    </button>
   );
 }

@@ -7,6 +7,8 @@ import {
   integer,
   decimal,
   serial,
+  date,
+  varchar,
 } from "drizzle-orm/pg-core";
 import postgres from "postgres";
 import { drizzle } from "drizzle-orm/postgres-js";
@@ -17,15 +19,48 @@ const pool = postgres(connectionString, { max: 1 });
 
 export const db = drizzle(pool);
 
-export const exercise = pgTable("exercise", {
+// export const exercise = pgTable("exercise", {
+//   id: serial("id").primaryKey(),
+//   guid: text("guid").notNull().unique(),
+//   name: text("name").notNull(),
+//   sets: integer("sets"),
+//   setsCompleted: integer("setsCompleted"),
+//   reps: integer("reps"),
+//   weight: decimal("weight"),
+//   date: date("date").defaultNow(),
+//   userId: text("userId")
+//     .notNull()
+//     .references(() => users.id, { onDelete: "cascade" }),
+// });
+
+export const workouts = pgTable("workouts", {
   id: serial("id").primaryKey(),
-  name: text("name").notNull(),
-  sets: integer("sets"),
-  reps: integer("reps"),
-  weight: decimal("weight"),
   userId: text("userId")
-    .notNull()
-    .references(() => users.id, { onDelete: "cascade" }),
+    .references(() => users.id)
+    .notNull(),
+  date: date("date").notNull(), // Data treningu
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const exercises = pgTable("exercises", {
+  id: serial("id").primaryKey(),
+  userId: text("userId")
+    .references(() => users.id)
+    .notNull(),
+  workoutId: integer("workoutId")
+    .references(() => workouts.id)
+    .notNull(),
+  name: text("name").notNull(), // Nazwa ćwiczenia (np. Przysiad)
+});
+
+export const exerciseSets = pgTable("exercise_sets", {
+  id: serial("id").primaryKey(),
+  exerciseId: integer("exerciseId")
+    .references(() => exercises.id)
+    .notNull(),
+  sets: integer("sets"), // Liczba serii
+  reps: integer("reps"), // Liczba powtórzeń
+  weight: integer("weight"), // Obciążenie w kg
 });
 
 export const users = pgTable("user", {

@@ -10,6 +10,16 @@ import ExerciseCard from "@/src/components/UI/Posts/ExerciseCard";
 export default async function WorkoutPage() {
   const session = await auth();
 
+  if (!session || !session.user || !session.user.id) {
+    return (
+      <main className="min-h-[calc(100vh-6rem)] flex flex-col bg-[#040506] text-white">
+        <div className="flex flex-col items-center min-w-24">
+          <p>No user session found. Please log in.</p>
+        </div>
+      </main>
+    );
+  }
+
   const today = new Date();
 
   const result = await db
@@ -30,7 +40,7 @@ export default async function WorkoutPage() {
 
   return (
     <main className="min-h-[calc(100vh-6rem)] flex flex-col bg-[#040506] text-white">
-      <Calendar />
+      <Calendar monthDay={""} />
       <div className="flex flex-col items-center min-w-24">
         <div className="flex gap-2 my-5">
           <AddExerciseButton text="Add exercise" icon="+" />

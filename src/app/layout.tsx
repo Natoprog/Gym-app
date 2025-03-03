@@ -14,12 +14,13 @@ export default async function RootLayout({
   return (
     <html lang="pl">
       <body className={inter.className}>
-        <Provider>
+        {/* <Provider>
           <QueryProvider>
             {children}
             <Navigation />
           </QueryProvider>
-        </Provider>
+        </Provider> */}
+        <h3>Strona w budowie</h3>
       </body>
     </html>
   );

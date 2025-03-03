@@ -1,4 +1,4 @@
-import { NextAuthConfig } from "next-auth";
+import { NextAuthConfig, Session } from "next-auth";
 import Google from "next-auth/providers/google";
 
 export default {
@@ -14,7 +14,7 @@ export default {
       }
       return token;
     },
-    session({ session, token }) {
+    session({ session, token }: { session: Session; token: any }) {
       session.user.id = token.id;
       return session;
     },

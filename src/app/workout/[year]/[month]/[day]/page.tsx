@@ -12,14 +12,19 @@ export default async function WorkoutPage({ params }: any) {
 
   const session = await auth();
 
-  const date = `${year}-${month}-${day}`;
+  // Jeśli session lub user nie istnieje, zwróć pustą listę lub błąd
+  if (!session || !session.user || !session.user.id) {
+    return (
+      <main className="min-h-[calc(100vh-6rem)] flex flex-col bg-[#040506] text-white">
+        <Calendar monthDay={day} />
+        <div className="flex flex-col items-center min-w-24">
+          <p>No user session found. Please log in.</p>
+        </div>
+      </main>
+    );
+  }
 
-  //   const result = await db
-  //     .select()
-  //     .from(workouts)
-  //     .where(
-  //       and(eq(workouts.userId, session?.user?.id), eq(workouts.date, date))
-  //     );
+  const date = `${year}-${month}-${day}`;
 
   const exerciseList = await db
     .select({
@@ -33,11 +38,10 @@ export default async function WorkoutPage({ params }: any) {
     .where(
       and(
         eq(workouts.date, date), // Filtrujemy po dzisiejszej dacie
-        eq(exercises.userId, session?.user?.id) // Filtrujemy po zalogowanym użytkowniku
+        eq(exercises.userId, session.user.id) // Teraz TypeScript wie, że id jest stringiem
       )
     );
 
-  //   console.log(result);
   return (
     <main className="min-h-[calc(100vh-6rem)] flex flex-col bg-[#040506] text-white">
       <Calendar monthDay={day} />

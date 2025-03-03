@@ -8,7 +8,7 @@ export async function GET(
   { params }: { params: { id: string } } // Correctly typed params
 ) {
   try {
-    const { id } = params; // Destructure id from params directly
+    const { id } = await params; // Destructure id from params directly
     const exerciseId = parseInt(id);
 
     if (isNaN(exerciseId)) {

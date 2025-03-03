@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
-import { db } from "@/src/db/drizzle-client"; // Twój plik konfiguracyjny bazy danych
-import { exerciseSets } from "@/src/db/schema"; // Plik ze schematem
+import { db } from "@/src/db/drizzle-client"; // Your database config file
+import { exerciseSets } from "@/src/db/schema"; // Schema file
 import { eq } from "drizzle-orm";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } } // Correctly typed params
 ) {
-  const { id } = await params;
   try {
+    const { id } = params; // Destructure id from params directly
     const exerciseId = parseInt(id);
 
     if (isNaN(exerciseId)) {

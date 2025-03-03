@@ -20,7 +20,7 @@ export default async function RootLayout({
             <Navigation />
           </QueryProvider>
         </Provider> */}
-        <h3>Strona w budowie</h3>
+        <h3>Strona w budowie!</h3>
       </body>
     </html>
   );

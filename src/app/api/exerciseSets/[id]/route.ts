@@ -5,7 +5,7 @@ import { eq } from "drizzle-orm";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } } // Correctly typed params
+  { params }: { params: Promise<{ id: string }> } // Correctly typed params
 ) {
   try {
     const { id } = await params; // Destructure id from params directly

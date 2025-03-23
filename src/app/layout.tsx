@@ -13,7 +13,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="pl">
-      <body className={inter.className}>
+      <body className={inter.className + " bg-[#040506]"}>
         <Provider>
           <QueryProvider>
             {children}

@@ -16,7 +16,7 @@ export default async function Navigation() {
   console.log(dateString);
 
   return (
-    <nav className="w-full h-24 sticky bottom-0 left-0 flex justify-center gap-10 items-center p-5 bg-slate-700 text-white">
+    <nav className="w-full h-24 sticky bottom-0 left-0 flex justify-center gap-10 items-center p-5 bg-[#111115] text-white">
       <Link
         href={`/workout/${date.getFullYear()}/${
           date.getMonth() + 1

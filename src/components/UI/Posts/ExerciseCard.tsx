@@ -45,7 +45,6 @@ export default function ExerciseCard({
   const handleDeleteSet = async (setId: number) => {
     const result = await DeleteSet(setId);
     if (result.success) {
-      // Inwaliduj zapytanie, aby odświeżyć dane
       await queryClient.invalidateQueries({
         queryKey: ["exerciseSets", data.id],
       });
@@ -156,7 +155,7 @@ export default function ExerciseCard({
             </form>
           ) : (
             <p className="text-gray-400 text-center">
-              Nie dodano żadnych setów.
+              You haven't added any set.
             </p>
           )}
         </div>

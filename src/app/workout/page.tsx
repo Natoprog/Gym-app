@@ -44,7 +44,7 @@ export default async function WorkoutPage() {
       <div className="flex flex-col items-center min-w-24">
         <div className="flex gap-2 my-5">
           <AddExerciseButton text="Add exercise" icon="+" />
-          <AddExerciseButton text="Autofill from plan" icon={<FaMagic />} />
+          {/* <AddExerciseButton text="Autofill from plan" icon={<FaMagic />} /> */}
         </div>
         <div className="flex flex-col gap-2 items-center w-full">
           {result.map((item) => (

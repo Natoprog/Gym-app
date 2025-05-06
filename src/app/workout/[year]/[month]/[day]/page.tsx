@@ -44,10 +44,6 @@ export default async function WorkoutPage({ params }: any) {
     return (
       <main className="min-h-[calc(100vh-6rem)] flex flex-col bg-[#15151A] text-white">
         <Calendar date={{ year, month, day }} />
-        {/* <div className="bg-[#2D3A3A] rounded-lg p-4 mx-4 mt-4">
-          <h1 className="text-xl font-bold text-center">Archiwalny trening</h1>
-          <p className="text-center text-gray-400 mt-1">{formattedDate}</p>
-        </div> */}
         <div className="flex flex-col items-center min-w-24">
           <div className="flex flex-col gap-2 items-center w-full mt-5">
             {exerciseList.length > 0 ? (
@@ -55,7 +51,9 @@ export default async function WorkoutPage({ params }: any) {
                 <ExerciseCard key={item.id} data={item} isPastWorkout={true} />
               ))
             ) : (
-              <p className="text-gray-400">Brak ćwiczeń dla tego dnia.</p>
+              <p className="text-gray-400">
+                There are no exercise for that day.
+              </p>
             )}
           </div>
         </div>
@@ -64,14 +62,14 @@ export default async function WorkoutPage({ params }: any) {
   }
 
   return (
-    <main className="min-h-[calc(100vh-6rem)] flex flex-col bg-[#15151A] text-white">
+    <main className="min-h-[calc(100vh-6rem)] flex flex-col text-white">
       <Calendar date={{ year, month, day }} />
       <div className="flex flex-col items-center min-w-24">
         <div className="flex gap-2 my-5">
           <AddExerciseButton text="Add exercise" icon="+" />
-          <AddExerciseButton text="Autofill from plan" icon={<FaMagic />} />
+          {/* <AddExerciseButton text="Autofill from plan" icon={<FaMagic />} /> */}
         </div>
-        <div className="flex flex-col gap-2 items-center w-full mt-5">
+        <div className="flex flex-col gap-2 items-center w-full mt-5 px-2">
           {exerciseList.map((item) => (
             <ExerciseCard key={item.id} data={item} isPastWorkout={false} />
           ))}

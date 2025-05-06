@@ -13,7 +13,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 dayjs.extend(weekday);
 dayjs.extend(localeData);
 dayjs.extend(localizedFormat);
-dayjs.locale("pl");
+dayjs.locale("en");
 
 export default function Calendar({
   date,
@@ -65,14 +65,14 @@ export default function Calendar({
         {startOfWeek.format("MMMM")[0].toUpperCase() +
           startOfWeek.format("MMMM YYYY").slice(1)}
       </div>
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-2 md:space-x-4">
         <button
           onClick={handlePreviousWeek}
-          className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 text-white"
+          className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 text-white cursor-pointer"
         >
           <IoIosArrowBack size={20} />
         </button>
-        <div className="flex space-x-4 overflow-x-auto">
+        <div className="flex overflow-x-auto w-full justify-between">
           {daysOfWeek.map((day) => {
             const dateString = day.format("YYYY-MM-DD");
             const isSelected = dateString === selectedDate;
@@ -84,12 +84,10 @@ export default function Calendar({
                 )}/${day.format("DD")}`}
                 ref={isSelected ? selectedDayRef : null}
                 onClick={() => setSelectedDate(dateString)}
-                className={`flex flex-col items-center text-white text-lg font-semibold w-12 transition-all duration-300 
+                className={`flex flex-col items-center text-white text-sm md:text-lg font-semibold w-10 md:w-12 transition-all duration-300 p-1 md:p-2
                   ${
-                    day.isSame(dayjs(), "day")
-                      ? "bg-blue-900 rounded-full p-2"
-                      : ""
-                  } ${isSelected ? "bg-blue-500 rounded-full p-2" : ""}`}
+                    day.isSame(dayjs(), "day") ? "bg-blue-900 rounded-full" : ""
+                  } ${isSelected ? "bg-blue-500 rounded-full p-1 md:p-2" : ""}`}
               >
                 <div>{day.format("dd").charAt(0)}</div>
                 <div>{day.format("D")}</div>
@@ -99,7 +97,7 @@ export default function Calendar({
         </div>
         <button
           onClick={handleNextWeek}
-          className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 text-white"
+          className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 text-white cursor-pointer"
         >
           <IoIosArrowForward size={20} />
         </button>

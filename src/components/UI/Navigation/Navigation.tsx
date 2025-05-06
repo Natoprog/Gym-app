@@ -11,10 +11,6 @@ export default async function Navigation() {
 
   const date = new Date();
 
-  const dateString = date.toISOString().split("T")[0];
-
-  console.log(dateString);
-
   return (
     <nav className="w-full h-24 sticky bottom-0 left-0 flex justify-center gap-10 items-center p-5 bg-[#111115] text-white">
       <Link
@@ -26,15 +22,15 @@ export default async function Navigation() {
         <CgGym size={25} />
         <span>Workout</span>
       </Link>
-      <Link href="/exercise" className="flex flex-col items-center">
+      {/* <Link href="/exercise" className="flex flex-col items-center">
         <AiFillHome size={25} />
         <span>Exercise</span>
-      </Link>
-      <Link href="/plan" className="flex flex-col items-center">
+      </Link> */}
+      <Link href="/calendar" className="flex flex-col items-center">
         <IoCalendarOutline size={25} />
         <span>Plan</span>
       </Link>
-      <Link href="#" className="flex flex-col items-center">
+      <Link href="/account" className="flex flex-col items-center">
         {!session ? (
           <RiAccountCircleFill size={25} />
         ) : (
@@ -47,7 +43,7 @@ export default async function Navigation() {
             className="rounded-full border-gray-50 border-solid border"
           />
         )}
-        <span>Konto</span>
+        <span>Account</span>
       </Link>
     </nav>
   );

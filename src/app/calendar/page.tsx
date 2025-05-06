@@ -6,7 +6,7 @@ import "dayjs/locale/pl";
 import { and, eq, sql } from "drizzle-orm";
 import Link from "next/link";
 
-dayjs.locale("pl");
+dayjs.locale("en");
 
 export default async function CalendarPage() {
   const session = await auth();
@@ -23,15 +23,17 @@ export default async function CalendarPage() {
   const start = firstDayCurrentMonth.toDate();
   const end = lastDayCurrentMonth.toDate();
 
-  const userWorkouts = await db
-    .select()
-    .from(workouts)
-    .where(
-      and(
-        eq(workouts.userId, userId),
-        sql`${workouts.createdAt} >= ${start} AND ${workouts.createdAt} <= ${end}`
-      )
-    );
+  const userWorkouts = userId
+    ? await db
+        .select()
+        .from(workouts)
+        .where(
+          and(
+            eq(workouts.userId, userId),
+            sql`${workouts.createdAt} >= ${start} AND ${workouts.createdAt} <= ${end}`
+          )
+        )
+    : [];
 
   const workoutDates = new Map();
   userWorkouts.forEach((workout) => {
@@ -99,13 +101,16 @@ export default async function CalendarPage() {
                       {day}
                     </Link>
                   ) : (
-                    <div
+                    <Link
+                      href={`/workout/${currentMonth.year()}/${currentMonth.format(
+                        "MM"
+                      )}/${day}`}
                       className={`w-8 h-8 flex items-center justify-center rounded-full ${
                         isToday ? "bg-blue-600" : ""
                       }`}
                     >
                       {day}
-                    </div>
+                    </Link>
                   )}
                 </div>
               );

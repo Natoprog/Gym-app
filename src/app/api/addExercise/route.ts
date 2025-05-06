@@ -26,6 +26,9 @@ export async function POST(req: Request) {
       }),
     });
 
+    console.log(baseUrl);
+    console.log("Workout response:", workoutRes);
+
     if (!workoutRes.ok) {
       return NextResponse.json(
         { error: "Failed to get or create workout" },

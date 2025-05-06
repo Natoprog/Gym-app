@@ -13,9 +13,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const baseUrl = process.env.VERCEL_URL
-      ? "https://" + process.env.VERCEL_URL
-      : "http://localhost:3000";
+    const baseUrl = req.headers.get('origin') || 'http://localhost:3000';
 
     const workoutRes = await fetch(`${baseUrl}/api/addWorkout`, {
       method: "POST",

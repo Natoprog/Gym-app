@@ -42,6 +42,14 @@ export const workouts = pgTable("workouts", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const exerciseType = pgTable("exercise_type", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(), // Nazwa typu ćwiczenia (np. Siłowe, Cardio)
+  description: text("description"), // Opis typu ćwiczenia
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 export const exercises = pgTable("exercises", {
   id: serial("id").primaryKey(),
   userId: text("userId")

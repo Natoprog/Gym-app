@@ -4,7 +4,7 @@ import Google from "next-auth/providers/google";
 export default {
   providers: [Google],
   pages: {
-    signIn: "/signin", // overrides the next-auth default signin page https://authjs.dev/guides/basics/pages
+    signIn: "/signIn",
   },
   callbacks: {
     jwt({ token, user }) {
@@ -19,7 +19,6 @@ export default {
       return session;
     },
     authorized: async ({ auth }) => {
-      // Logged in users are authenticated, otherwise redirect to login page
       return !!auth;
     },
   },

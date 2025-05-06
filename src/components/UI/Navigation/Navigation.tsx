@@ -13,6 +13,10 @@ export default async function Navigation() {
 
   return (
     <nav className="w-full h-24 sticky bottom-0 left-0 flex justify-center gap-10 items-center p-5 bg-[#111115] text-white">
+      <Link href="/" className="flex flex-col items-center">
+        <AiFillHome size={25} />
+        <span>Home</span>
+      </Link>
       <Link
         href={`/workout/${date.getFullYear()}/${
           date.getMonth() + 1
@@ -22,10 +26,6 @@ export default async function Navigation() {
         <CgGym size={25} />
         <span>Workout</span>
       </Link>
-      {/* <Link href="/exercise" className="flex flex-col items-center">
-        <AiFillHome size={25} />
-        <span>Exercise</span>
-      </Link> */}
       <Link href="/calendar" className="flex flex-col items-center">
         <IoCalendarOutline size={25} />
         <span>Plan</span>

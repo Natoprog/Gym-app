@@ -29,7 +29,7 @@ export default async function CalendarPage() {
         .from(workouts)
         .where(
           and(
-            eq(workouts.userId, userId),
+            eq(workouts.userId, userId as string),
             sql`${workouts.createdAt} >= ${start} AND ${workouts.createdAt} <= ${end}`
           )
         )

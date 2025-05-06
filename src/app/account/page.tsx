@@ -15,7 +15,7 @@ export default async function AccountPage() {
   }
 
   return (
-    <main className="flex flex-col justify-center items-center h-screen gap-10 text-white bg-[#111115]">
+    <main className="flex flex-col justify-center items-center min-h-[calc(100vh-6rem)] gap-10 text-white bg-[#111115]">
       <div className="flex flex-col items-center gap-4">
         <Image
           src={session.user?.image || ""}

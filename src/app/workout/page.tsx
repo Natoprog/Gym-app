@@ -40,7 +40,11 @@ export default async function WorkoutPage() {
 
   return (
     <main className="min-h-[calc(100vh-6rem)] flex flex-col bg-[#040506] text-white">
-      <Calendar monthDay={""} />
+      <Calendar date={{
+        year: today.getFullYear().toString(),
+        month: (today.getMonth() + 1).toString(),
+        day: today.getDate().toString()
+      }} />
       <div className="flex flex-col items-center min-w-24">
         <div className="flex gap-2 my-5">
           <AddExerciseButton text="Add exercise" icon="+" />
@@ -48,7 +52,7 @@ export default async function WorkoutPage() {
         </div>
         <div className="flex flex-col gap-2 items-center w-full">
           {result.map((item) => (
-            <ExerciseCard key={item.id} data={item} />
+            <ExerciseCard key={item.id} data={item} isPastWorkout={false} />
           ))}
         </div>
       </div>

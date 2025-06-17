@@ -13,7 +13,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const baseUrl = req.headers.get('origin') || 'http://localhost:3000';
+    const baseUrl = req.headers.get("origin") || "http://localhost:3000";
 
     const workoutRes = await fetch(`${baseUrl}/api/addWorkout`, {
       method: "POST",
@@ -37,7 +37,6 @@ export async function POST(req: Request) {
 
     const workout = await workoutRes.json();
 
-    // Dodaj ćwiczenie do treningu
     const newExercise = await db.insert(exercises).values({
       userId: userId,
       name: name,

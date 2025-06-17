@@ -12,7 +12,6 @@ export async function POST(req: Request) {
 
     const today = new Date();
 
-    // Sprawdź, czy trening na ten dzień już istnieje
     const existingWorkout = await db
       .select()
       .from(workouts)
@@ -25,10 +24,8 @@ export async function POST(req: Request) {
       .limit(1);
 
     if (existingWorkout.length > 0) {
-      return NextResponse.json(existingWorkout[0]); // Zwracamy istniejący trening
+      return NextResponse.json(existingWorkout[0]);
     }
-
-    // Tworzymy nowy trening
     const newWorkout = await db
       .insert(workouts)
       .values({ userId, date: today.toISOString().split("T")[0] })

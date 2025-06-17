@@ -1,7 +1,7 @@
 "use server";
 
-import { db } from "@/src/db/drizzle-client"; // Importuj bazę danych
-import { exerciseSets as sets } from "@/src/db/schema"; // Importuj schemat tabeli
+import { db } from "@/src/db/drizzle-client";
+import { exerciseSets as sets } from "@/src/db/schema";
 import { eq } from "drizzle-orm";
 
 export async function updateSet(

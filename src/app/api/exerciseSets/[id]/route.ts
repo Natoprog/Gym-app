@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
-import { db } from "@/src/db/drizzle-client"; // Your database config file
-import { exerciseSets } from "@/src/db/schema"; // Schema file
+import { db } from "@/src/db/drizzle-client";
+import { exerciseSets } from "@/src/db/schema";
 import { eq } from "drizzle-orm";
 
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ id: string }> } // Correctly typed params
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = await params; // Destructure id from params directly
+    const { id } = await params;
     const exerciseId = parseInt(id);
 
     if (isNaN(exerciseId)) {

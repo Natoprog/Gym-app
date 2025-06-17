@@ -33,18 +33,20 @@ export default async function WorkoutPage() {
     .innerJoin(workouts, eq(exercises.workoutId, workouts.id))
     .where(
       and(
-        eq(workouts.date, new Date().toISOString().split("T")[0]), // Filtrujemy po dzisiejszej dacie
-        eq(exercises.userId, session?.user?.id) // Filtrujemy po zalogowanym użytkowniku
+        eq(workouts.date, new Date().toISOString().split("T")[0]),
+        eq(exercises.userId, session?.user?.id)
       )
     );
 
   return (
     <main className="min-h-[calc(100vh-6rem)] flex flex-col bg-[#040506] text-white">
-      <Calendar date={{
-        year: today.getFullYear().toString(),
-        month: (today.getMonth() + 1).toString(),
-        day: today.getDate().toString()
-      }} />
+      <Calendar
+        date={{
+          year: today.getFullYear().toString(),
+          month: (today.getMonth() + 1).toString(),
+          day: today.getDate().toString(),
+        }}
+      />
       <div className="flex flex-col items-center min-w-24">
         <div className="flex gap-2 my-5">
           <AddExerciseButton text="Add exercise" icon="+" />

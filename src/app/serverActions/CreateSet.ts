@@ -1,5 +1,4 @@
-// actions.ts
-"use server"; // Oznacza, że to kod wykonywany tylko na serwerze
+"use server";
 
 import { db } from "../../db/drizzle-client";
 import { exerciseSets as sets } from "../../db/schema";

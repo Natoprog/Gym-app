@@ -24,9 +24,9 @@ export default async function WorkoutPage({ params }: any) {
 
   const date = `${year}-${month}-${day}`;
   const workoutDate = dayjs(date);
-  const today = dayjs("2025-03-13"); // Bieżąca data według podanego kontekstu
+  const today = dayjs(date);
 
-  const isPastWorkout = workoutDate.isBefore(today, "day"); // Sprawdza, czy data jest w przeszłości
+  const isPastWorkout = workoutDate.isBefore(today, "day");
 
   const exerciseList = await db
     .select({

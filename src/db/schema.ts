@@ -19,33 +19,19 @@ const pool = postgres(connectionString, { max: 1 });
 
 export const db = drizzle(pool);
 
-// export const exercise = pgTable("exercise", {
-//   id: serial("id").primaryKey(),
-//   guid: text("guid").notNull().unique(),
-//   name: text("name").notNull(),
-//   sets: integer("sets"),
-//   setsCompleted: integer("setsCompleted"),
-//   reps: integer("reps"),
-//   weight: decimal("weight"),
-//   date: date("date").defaultNow(),
-//   userId: text("userId")
-//     .notNull()
-//     .references(() => users.id, { onDelete: "cascade" }),
-// });
-
 export const workouts = pgTable("workouts", {
   id: serial("id").primaryKey(),
   userId: text("userId")
     .references(() => users.id)
     .notNull(),
-  date: date("date").notNull(), // Data treningu
+  date: date("date").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const exerciseType = pgTable("exercise_type", {
   id: serial("id").primaryKey(),
-  name: text("name").notNull(), // Nazwa typu ćwiczenia (np. Siłowe, Cardio)
-  description: text("description"), // Opis typu ćwiczenia
+  name: text("name").notNull(),
+  description: text("description"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
@@ -58,7 +44,7 @@ export const exercises = pgTable("exercises", {
   workoutId: integer("workoutId")
     .references(() => workouts.id)
     .notNull(),
-  name: text("name").notNull(), // Nazwa ćwiczenia (np. Przysiad)
+  name: text("name").notNull(),
 });
 
 export const exerciseSets = pgTable("exercise_sets", {
@@ -66,9 +52,9 @@ export const exerciseSets = pgTable("exercise_sets", {
   exerciseId: integer("exerciseId")
     .references(() => exercises.id)
     .notNull(),
-  sets: integer("sets"), // Liczba serii
-  reps: integer("reps"), // Liczba powtórzeń
-  weight: integer("weight"), // Obciążenie w kg
+  sets: integer("sets"),
+  reps: integer("reps"),
+  weight: integer("weight"),
 });
 
 export const users = pgTable("user", {
